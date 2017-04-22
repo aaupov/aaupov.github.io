@@ -3,20 +3,19 @@ layout: post
 title: "Сечение бесконечномерного куба"
 date: 2017-04-22
 ---
-    <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-    <script type="text/x-mathjax-config">
-  MathJax.Ajax.config.path["Extra"] = "https://github.com/mathjax/MathJax-third-party-extensions";
- MathJax.Hub.Config({
-   extensions: ["tex2jax.js","[Extra]/xyjax.js"],
-   jax: ["input/TeX","output/HTML-CSS"],
-   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]],
-             displayMath: [ ['$$','$$'], ['\\[','\\]'] ]
-   },
-   TeX: {extensions: ["AMSmath.js","AMSsymbols.js"]}
- });
- </script>
+<script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+	MathJax.Ajax.config.path["Extra"] = "https://github.com/mathjax/MathJax-third-party-extensions";
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js","[Extra]/xyjax.js"],
+		jax: ["input/TeX","output/HTML-CSS"],
+		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]],
+			  displayMath: [ ['$$','$$'], ['\\[','\\]'] ]},
+	TeX: {extensions: ["AMSmath.js","AMSsymbols.js"]}
+	});
+</script>
     
     
 # Задача
