@@ -7,29 +7,28 @@ date: 2017-04-22
 	MathJax.Hub.Config({
 		extensions: ["tex2jax.js"],
 		jax: ["input/TeX","output/HTML-CSS"],
-		"HTML-CSS": {
-			styles: {".MathJax_Preview": {visibility: "hidden"}}
-		},
 		tex2jax: {inlineMath:  [["$", "$"],  ["\\(", "\\)"]],
 			  displayMath: [["$$","$$"], ["\\[", "\\]"]]},
-	TeX: {extensions: ["AMSmath.js", "AMSsymbols.js", "https://cdn.rawgit.com/aaupov/aaupov.github.io/edcdf91e/xyjax_ext/xypic.js"]}
+	TeX: {extensions: ["AMSmath.js", "AMSsymbols.js", "https://cdn.rawgit.com/aaupov/aaupov.github.io/master/xyjax_ext/xypic.js"]}
 	});
 </script>
     
 <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js">
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-    
+
 # Задача
-Представьте себе единичный квадрат с проведенной диагональю.
+Представьте себе квадрат единичной длины с проведенной диагональю.
+
 \\[
 \begin{xy}
 \xymatrix {
-	A \ar[r] \ar[d] & B \ar[d] \\
-	C \ar[r] & D
+	A & B \\
+	C & D
 }
 \end{xy}
 \\]
+
 Известно, что длина диагонали такого квадрата составляет $\sqrt{2}$.
 
 Диагональ можно провести не только через центр квадрата: 
@@ -40,9 +39,8 @@ date: 2017-04-22
 
 Представьте себе, что мы продолжим повышать размерность задачи, рассекая $n$-мерные кубы гиперплоскостями, ортогональными главным диагоналям и проходящим через центр диагонали. В сечении мы будем получать *поверхности* размерности $n-1$ с некоторым искомым объемом. 
 
-![And now we need to go deeper](https://prepsmarter.com/blog/content/images/2016/06/deeper.jpg)
-
 ## Каков будет этот объём при бесконечном $n$?
+![And now we need to go deeper](https://prepsmarter.com/blog/content/images/2016/06/deeper.jpg)
 
 # Геометрия
 Рассмотрим $n$-мерный единичный куб с центром в начале координат:
@@ -50,3 +48,4 @@ date: 2017-04-22
 \mathbf{C}=[-\frac{1}{2},\frac{1}{2}]^n\in\mathfrak{R}^n
 \\]
 Пусть $\mathbf{B}$--гиперплоскость размерности $n-1$, рассекающая \\(\mathbf{C}\\).
+
