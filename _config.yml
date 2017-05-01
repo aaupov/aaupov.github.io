@@ -1,3 +1,10 @@
-name: Amir Ayupov blog 
+name: Blog 
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
+theme: minima
+google_analytics: UA-84003728-2
+defaults:
+    - scope:
+            path: "xyjax_ext"
+      values:
+            script: true
