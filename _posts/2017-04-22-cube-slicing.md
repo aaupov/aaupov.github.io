@@ -3,12 +3,7 @@ layout: post
 title: "Сечение бесконечномерного куба"
 date: 2017-04-22
 ---
-<script type="text/javascript" async
-	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js">
-</script>
-    
 <script type="text/x-mathjax-config">
-	MathJax.Ajax.config.path["Extra"] = "https://github.com/mathjax/MathJax-third-party-extensions";
 	MathJax.Hub.Config({
 		extensions: ["tex2jax.js"],
 		jax: ["input/TeX","output/HTML-CSS"],
@@ -17,8 +12,12 @@ date: 2017-04-22
 		},
 		tex2jax: {inlineMath:  [["$", "$"],  ["\\(", "\\)"]],
 			  displayMath: [["$$","$$"], ["\\[", "\\]"]]},
-	TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "http://aaupov.github.io/xyjax_ext/xypic.js"]}
+	TeX: {extensions: ["AMSmath.js", "AMSsymbols.js", "https://cdn.rawgit.com/aaupov/aaupov.github.io/edcdf91e/xyjax_ext/xypic.js"]}
 	});
+</script>
+    
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js">
 </script>
     
 # Задача
