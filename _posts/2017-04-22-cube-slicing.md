@@ -3,28 +3,31 @@ layout: post
 title: "Сечение бесконечномерного куба"
 date: 2017-04-22
 ---
-<script type="text/javascript"
-	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js">
 </script>
+    
 <script type="text/x-mathjax-config">
 	MathJax.Ajax.config.path["Extra"] = "https://github.com/mathjax/MathJax-third-party-extensions";
 	MathJax.Hub.Config({
-		extensions: ["tex2jax.js","[Extra]/xyjax.js"],
+		extensions: ["tex2jax.js"],
 		jax: ["input/TeX","output/HTML-CSS"],
-		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]],
-			  displayMath: [ ['$$','$$'], ['\\[','\\]'] ]},
-	TeX: {extensions: ["AMSmath.js","AMSsymbols.js"]}
+		"HTML-CSS": {
+			styles: {".MathJax_Preview": {visibility: "hidden"}}
+		},
+		tex2jax: {inlineMath:  [["$", "$"],  ["\\(", "\\)"]],
+			  displayMath: [["$$","$$"], ["\\[", "\\]"]]},
+	TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "http://aaupov.github.io/xyjax_ext/xypic.js"]}
 	});
 </script>
-    
     
 # Задача
 Представьте себе единичный квадрат с проведенной диагональю.
 \\[
 \begin{xy}
-\xymatrix{
-  A \ar[r] \ar[d] & B \ar[d] \\
-  C \ar[r] & D
+\xymatrix {
+	A \ar[r] \ar[d] & B \ar[d] \\
+	C \ar[r] & D
 }
 \end{xy}
 \\]
