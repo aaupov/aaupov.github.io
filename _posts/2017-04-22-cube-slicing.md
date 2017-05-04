@@ -55,7 +55,7 @@ Pассмотрим квадрат единичной длины:
 В сечении мы будем получать *гиперповерхности* размерности $n-1$ с некоторым искомым объемом.
 Вопрос данной заметки в том, какого же объема будут эти гиперповерхности при бесконечном $n$.
 
-# Чему равен объём сечения при $n\to\inf$?
+# Чему равен объём сечения при $n\to\infty$?
 <center>
 <img src="https://prepsmarter.com/blog/content/images/2016/06/deeper.jpg"/>
 </center>
@@ -115,21 +115,23 @@ V(\mathbf{X_a})=\left|\vec{v}\right|\cdot\Pr{ \left( \left| \sum_{i=1}^{n-1} y_i
 Однако нас интересует центральное ортогональное сечение, заданного нормалью $\vec{V}=(1,1,\cdots,1)$.
 
 # Погрузимся еще чуть-чуть в теорию вероятности
-И отыщем характеристическую функцию случайной величины $y_k$:
+И отыщем характеристическую функцию $y_k$:
 
-\\[
+$$
 \begin{align}
-f_k(t)&=\bf{M}\exp{i t y_k}=\int_{-\inf}^{+\inf}\exp{i t x}p(x)dx  =
-\langle p(x)=\begin{empheq}[left=\empheqlbrace]{align}
-\frac{1}{v_k}, &x\in\left[-\frac{v_k}{2},\frac{v_k}{2}\right]\\
-0, & иначе.
-\end{empheq}\rangle\\
-&=\int\limits_{-\frac{v_k}{2}}^{\frac{v_k}{2}}\exp{i t x}\frac{1}{v_k} dx =\\
-&=\left.\frac{1}{v_k}\frac{1}{it}\exp{i t x}\right|_{-\frac{v_k}{2}}^{\frac{v_k}{2}} =\\
-&=\frac{\exp{it\frac{v_k}{2}}-\exp{-it\frac{v_k}{2}}}{itv_k}=\\
-&=\frac{1}{2}\frac{\exp{it\frac{v_k}{2}}-\exp{-it\frac{v_k}{2}}}{it\frac{v_k}{2}}=\\
-&=\frac{\sin{t\frac{v_k}{2}}}{t\frac{v_k}{2}}.
+f_k(t) & =\bf{M}e^{i t y_k}=\int\limits_{-\infty}^{+\infty}e^{i t x}p(x)dx  =\\
+&=\left| p(x) \quad = \quad \left\{ 
+\begin{aligned}
+\frac{1}{v_k},\quad  & x\in\left[-\frac{v_k}{2},\frac{v_k}{2}\right] \\
+0, \quad            & \text{иначе}
+\end{aligned}
+\right.\right| \\
+&=\int\limits_{-\frac{v_k}{2}}^{\frac{v_k}{2}}e^{i t x}\frac{1}{v_k} dx =%
+\left.\frac{1}{v_k}\frac{1}{it}e^{i t x}\right|_{-\frac{v_k}{2}}^{\frac{v_k}{2}} =\\
+&=\frac{e^{it\frac{v_k}{2}}-e^{-it\frac{v_k}{2}}}{itv_k} =
+\frac{1}{2}\frac{e^{it\frac{v_k}{2}}-e^{-it\frac{v_k}{2}}}{it\frac{v_k}{2}}=\\
+&=\frac{\sin{t\frac{v_k}{2}}}{t\frac{v_k}{2}} &.
 \end{align}
-\\]
+$$
 
 Рассмотрим теперь случайную величину $\eta=\sum\limits_{k=1}^{n-1}y_k.$
