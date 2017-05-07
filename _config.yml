@@ -3,3 +3,4 @@ markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 theme: minima
 google_analytics: UA-84003728-2
+disqus.shortname: aaupov-github-io
