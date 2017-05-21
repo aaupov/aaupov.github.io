@@ -66,7 +66,7 @@ date: 2017-04-22
 Вопрос данной заметки в том, какого же объема будут эти гиперповерхности при бесконечном $n$.
 
 <center>
-<img src="https://prepsmarter.com/blog/content/images/2016/06/deeper.jpg"/>
+<img src="http://static2.channels.com/thumbnails/Radu-Inception-trailer-HD-TV-e10127230.jpg"/>
 </center>
 <br>
 
@@ -177,3 +177,11 @@ f_\eta^*(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\sin{\frac{t}{
 $$
 
 
+# Литература
+- D. Hensley, _Slicing the cube in $R^n$ and probability (bounds for the measure of a central cube slice in $R^n$ by probability methods)_,
+Proceedings of the American Mathematical Society, Vol. 73, No. 1 (Jan., 1979)
+- Б. В. Гнеденко, _Курс теории вероятностей_
+
+# Примечания
+Эта задача была одной из двух зачетных задач по курсу теории вероятностей (Животов С.Д., ФАЛТ МФТИ).
+Первому решившему полагался зачет "автоматом" без сдачи заданий, и я стал таким счастливчиком (из-за чего так и не заботал теорвер как следует...)
