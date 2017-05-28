@@ -87,7 +87,7 @@ $\mathbf{v}$---нормаль к этой гиперплоскости $\mathbf{
 
 \\[
 \begin{equation}
-\mathbf{X}=(x_1, x_2, \cdots, x_n):\quad\sum_{i=1}^n x_i v_i = 0.
+\mathbf{X}=(x_1, x_2, \cdots, x_n):\quad\sum_{i=1}^n x_i v_i = 0
 \label{isec_eq}
 \end{equation}
 \\]
@@ -113,7 +113,7 @@ $\Pr{\left( \left|\sum\limits_{i=1}^{n-1}y_i\right|\leqslant\frac{1}{2} \right)}
 
 Искомый объем сечения $X$ будет равен произведению
 \begin{equation}
-V(\mathbf{X})=\lvert\mathbf{v}\rvert\cdot\Pr{ \left( \left| \sum\limits_{i=1}^{n-1} y_i \right| \leqslant\frac{1}{2}\right)}.
+V(\mathbf{X})=\lvert\mathbf{v}\rvert\cdot\Pr{ \left( \left| \sum\limits_{i=1}^{n-1} y_i \right| \leqslant\frac{1}{2}\right)}
 \label{vol}
 \end{equation}
 
@@ -143,7 +143,7 @@ V(\mathbf{X_a})=\left|\vec{V}\right|\cdot\Pr{ \left( \left| \sum_{i=1}^{n-1} y_i
 $$
 \begin{align*}
 f_k(t) & ={\bf M}e^{i t y_k}=\int\limits_{-\infty}^{+\infty}e^{i t x}p(x)dx  =\\
-&=\left| p(x) \quad = \quad \left\{ 
+&\left| p(x) \quad = \quad \left\{ 
 \begin{array}{cl}
 \frac{1}{v_k},\quad  & x\in\left[-\frac{v_k}{2},\frac{v_k}{2}\right] \\
 0, \quad            & \text{иначе}
@@ -157,18 +157,18 @@ f_k(t) & ={\bf M}e^{i t y_k}=\int\limits_{-\infty}^{+\infty}e^{i t x}p(x)dx  =\\
 \end{align*}
 $$
 
-Рассмотрим теперь случайную величину $\eta=\sum\limits_{k=1}^{n-1}y_k.$
+Рассмотрим теперь случайную величину $\eta=\sum\limits_{k=1}^{n-1}y_k$.
 
 Характеристическая функция $\eta$ будет равна произведению характеристических функций $y_k$:
 
 $$
-f_\eta(t)=\prod\limits_{k=1}^{n-1}f_k(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\frac{\sin{t\frac{v_k}{2}}}{v_k}.
+f_\eta(t)=\prod\limits_{k=1}^{n-1}f_k(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\frac{\sin{t\frac{v_k}{2}}}{v_k}
 $$
 
 Воспользуемся тем, что нас интересует центральное ортогональное сечение, заданное нормалью $\vec{V}=(1,1,\cdots,1)$:
 
 $$
-f_\eta(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\sin{\frac{t}{2}}=\left(\frac{\sin{t/2}}{t/2}\right)^{n-1}.
+f_\eta(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\sin{\frac{t}{2}}=\left(\frac{\sin{t/2}}{t/2}\right)^{n-1}
 $$
 
 Теперь воспользуемся формулой обращения:
@@ -177,7 +177,7 @@ $$
 P\left(|\eta|\leqslant\frac{1}{2}\right)&=P\left(-\frac{1}{2}\leqslant\eta\leqslant\frac{1}{2}\right)= && \text{для абс.непр. сл.в.}\nonumber\\
 &=P\left(-\frac{1}{2}\leqslant\eta\lt\frac{1}{2}\right)=F_{\eta}\left(\frac{1}{2}\right)-F_{\eta}\left(-\frac{1}{2}\right)= && \text{формула обращения}\nonumber\\
 &=\frac{1}{2\pi}\;v.p.\int\limits_{-\infty}^{\infty}\frac{e^{it\frac{1}{2}}-e^{-it\frac{1}{2}}}{it}\left(\frac{\sin{t/2}}{t/2}\right)^{n-1}dt=\nonumber\\
-&=\frac{1}{2\pi}\:v.p.\int\limits_{-\infty}^{\infty}\left(\frac{\sin{t/2}}{t/2}\right)^{n}dt.\label{prob}
+&=\frac{1}{2\pi}\:v.p.\int\limits_{-\infty}^{\infty}\left(\frac{\sin{t/2}}{t/2}\right)^{n}dt\label{prob}
 \end{align}
 $$
 
@@ -203,9 +203,9 @@ $$
 
 $$
 \begin{align*}
-V(\mathbf{X})&=\lim_{n\to\infty}\frac{1}{2\pi}\int\limits_{-\infty}^{+\infty}\sqrt{n}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n\frac{2}{\sqrt{n}}dx \\
-&=\frac{1}{\pi}\lim_{n\to\infty}\int\limits_{-\infty}^{+\infty}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n dx\\
-&=\frac{1}{\pi}\int\limits_{-\infty}^{+\infty}\lim_{n\to\infty}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n dx\\
+V(\mathbf{X})&=\lim_{n\to\infty}\frac{1}{2\pi}\int\limits_{-\infty}^{+\infty}\sqrt{n}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n\frac{2}{\sqrt{n}}dx= \\
+&=\frac{1}{\pi}\lim_{n\to\infty}\int\limits_{-\infty}^{+\infty}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n dx=\\
+&=\frac{1}{\pi}\int\limits_{-\infty}^{+\infty}\lim_{n\to\infty}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n dx
 \end{align*}
 $$
 
@@ -226,7 +226,7 @@ $$
 I&=\lim_{n\to\infty}\left(1-\frac{1}{6}\left(\frac{x}{\sqrt{n}}\right)^2+o\left(\left(\frac{x}{\sqrt{n}}\right)^2\right)\right)^n=\\
 &=\lim_{n\to\infty}\left(1-\frac{x^2}{6n}+o\left(\frac{x^2}{n}\right)\right)^n=\\
 &=\lim_{n\to\infty}\exp\left(n \ln\left(1-\frac{x^2}{6n}+o\left(\frac{x^2}{n}\right)\right)\right)=\\
-&=\lim_{n\to\infty}\exp n \left(\frac{x^2}{6n}\right)=e^{-x^2/6}.
+&=\lim_{n\to\infty}\exp n \left(\frac{x^2}{6n}\right)=e^{-x^2/6}
 \end{align*}
 $$
 
@@ -234,7 +234,7 @@ $$
 
 $$
 \begin{align*}
-V(\mathbf{X})&=\frac{1}{\pi}\int\limits_{-\infty}^{+\infty}e^{-x^2/6}dx=\sqrt{\frac{6}{\pi}}.
+V(\mathbf{X})&=\frac{1}{\pi}\int\limits_{-\infty}^{+\infty}e^{-x^2/6}dx=\sqrt{\frac{6}{\pi}}
 \end{align*}
 $$
 
