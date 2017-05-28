@@ -66,7 +66,7 @@ date: 2017-04-22
 Вопрос данной заметки в том, какого же объема будут эти гиперповерхности при бесконечном $n$.
 
 <center>
-<img src="http://static2.channels.com/thumbnails/Radu-Inception-trailer-HD-TV-e10127230.jpg"/>
+<img src="/assets/2017-04-cube/inception.jpg"/>
 </center>
 <br>
 
