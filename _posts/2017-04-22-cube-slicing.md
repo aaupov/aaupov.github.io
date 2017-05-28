@@ -75,7 +75,7 @@ date: 2017-04-22
 <br>
 Рассмотрим единичный куб с центром в начале координат:
 \\[
-\mathbf{C}=\left[-\frac{1}{2},\frac{1}{2}\right]^n\in\mathfrak{R}^n
+\mathbf{C}=\left[-\frac{1}{2},\frac{1}{2}\right]^n\in\mathbb{R}^n
 \\]
 
 Рассечем его какой-нибудь плоскостью.
