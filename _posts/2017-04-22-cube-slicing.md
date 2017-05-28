@@ -81,70 +81,64 @@ date: 2017-04-22
 Рассечем его какой-нибудь плоскостью.
 Пусть $\mathbf{B}$---некоторая гиперплоскость, рассекающая \\(\mathbf{C}\\).
 
-$\vv{V}$---нормаль к этой гиперплоскости $\mathbf{B}$ с координатами $\vec{V}=(v_1,v_2,\cdots,v_n),\quad v_i\neq0$.
+$\mathbf{v}$---нормаль к этой гиперплоскости $\mathbf{B}$ с координатами $\mathbf{v}=(v_1,v_2,\cdots,v_n),\quad v_i\neq0$.
 
 Пересечение $\mathbf{B}$ с кубом $\mathbf{C}$ зададим поверхностью $\mathbf{X}=\mathbf{B}\cap\mathbf{C}$:
 
 \\[
-\mathbf{X}=(x_1, x_2, \cdots, x_n):\quad\sum_{i=1}^n x_i v_i = 0.
-\\]
-
-Объем сечения равен интегралу $V(\mathbf{X})=\int_\mathbf{X}dV$.
-
-Также известно, что сечение полностью лежит внутри куба:
-\\[
 \begin{equation}
-V(\mathbf{X})=\{\Large\int\limits_\mathbf{C}\}
-\left\\{x\in\mathbf{X}:\sum\limits_{i=1}^n x_i v_i =0\right\\}\,\mathrm{d}x
+\mathbf{X}=(x_1, x_2, \cdots, x_n):\quad\sum_{i=1}^n x_i v_i = 0.
 \label{isec_eq}
 \end{equation}
 \\]
 
-<!--
-\mathbf{X}\subset\mathbf{C}\quad\implies\quad-\frac{1}{2}\leqslant x_i\leqslant\frac{1}{2}.
-Ортогонально спроецируем $\mathbf{X}$ на $n$-ую "ось" $A_n=(x_1,x_2,\cdots,x_{n{-}1},0)$ (гиперплоскость с $x_n=0$) и рассмотрим "площадь" проекции:
+Ортогонально спроецируем $\mathbf{X}$ на гиперплоскость с $x_n=0$ и рассмотрим "площадь" проекции:
 \\[
-P=\frac{(\mathbf{X},A_n)}{\left\|\left\|A_n\right\|\right\|^2}=\sum_{i=1}^{n-1}x_i v_i
+P=\left\\{(x_1, x_2, \ldots, x_{n-1}):\quad-\frac{1}{2}\leqslant\sum_{i=1}^{n-1}x_i v_i\leqslant\frac{1}{2}\right\\}
+\label{proj}
 \\]
 
-Из \eqref{isec_eq} имеем следующее:
+Объем сечения будет равен
+$V(\mathbf{X})=|\mathbf{v}|P$.
 
-\\[
--\frac{1}{2}\leqslant\sum_{i=1}^{n-1}x_i v_i\leqslant\frac{1}{2}\quad\implies\quad \left|P\right|\leqslant\frac{1}{2},
-\\]
--->
+# Вероятностная постановка
 
-# Внезапный поворот: воспользуемся случайными величинами
+Переформулируем задачу в вероятностных терминах.
 
-Точнее, воспользуемся чем-то похожим на метод Монте-Карло, только без численного интегрирования.
-Пусть $y_k$---независимые в совокупности случайные величины, распределенные на $v_k: \left[-\frac{v_k}{2},\frac{v_k}{2}\right],\,k=\overline{1,n}$
+Пусть $y_k$---независимые в совокупности случайные величины, распределенные на $v_k: \left[-\frac{v_k}{2},\frac{v_k}{2}\right],\,k=\overline{1,n-1}$
 с постоянной плотностью $\frac{1}{v_k}$.
 
-Тогда \eqref{isec_eq} будет совпадать с вероятностной мерой случайной величины $\sum\limits_{i=1}^n y_i$:
-Из \eqref{isec_eq} имеем следующее:
-
-\\[
--\frac{1}{2}\leqslant\sum_{i=1}^{n-1}x_i v_i\leqslant\frac{1}{2}\quad\implies\quad\left|\sum_{i=1}^{n-1}x_i v_i\right|\leqslant\frac{1}{2},
-\\]
-
-что в точности равно вероятности
+Тогда мера множества $P$ будет совпадать с вероятностью 
 $\Pr{\left( \left|\sum\limits_{i=1}^{n-1}y_i\right|\leqslant\frac{1}{2} \right)}$.
 
-Круто! Получили, что площадь проекции равна некоторой вероятности. Но нас интересовала не проекция поверхости на некоторую ось, а объем самой поверхности сечения $X$.
+Искомый объем сечения $X$ будет равен произведению
+\begin{equation}
+V(\mathbf{X})=\lvert\mathbf{v}\rvert\cdot\Pr{ \left( \left| \sum\limits_{i=1}^{n-1} y_i \right| \leqslant\frac{1}{2}\right)}.
+\label{vol}
+\end{equation}
 
-Объем сечения $X$ будет равен произведению
-\\[
-V(\mathbf{X})=\lvert\vec{V}\rvert\cdot\Pr{ \left( \left| \sum\limits_{i=1}^{n-1} y_i \right| \leqslant\frac{1}{2}\right)}.
-\\]
-
+<!--
 Если бы нас интересовал объем сечения, отстоящего от центрального на некоторое заданное расстояние $a$, его можно было бы найти по формуле
 
 \\[
 V(\mathbf{X_a})=\left|\vec{V}\right|\cdot\Pr{ \left( \left| \sum_{i=1}^{n-1} y_i-a \right| \leqslant\frac{1}{2} \right)}.
 \\]
+-->
 
-# Погрузимся еще чуть-чуть в теорию вероятности
-И отыщем характеристическую функцию $y_k$:
+Как найти чему равна эта вероятность?
+
+Можно быть внимательными и обратить внимание, что выполнены все условия [центральной предельной теоремы](https://ru.wikipedia.org/wiki/%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%82%D0%B5%D0%BE%D1%80%D0%B5%D0%BC%D0%B0):
+
+> Пусть $X_1, \ldots, X_n, \ldots$ --- бесконечная последовательность независимых одинаково распределенных случайных величин с конечным матожиданием и дисперсией.
+>
+> Тогда имеет место сходимость по распределению $\frac{\sum_{i=1}^n X_i-\mu n}{\sigma\sqrt{n}}\xrightarrow[n\to\infty]{d}N(0,1)$.
+
+Но если внимательность не относится к нашим сильным сторонам (в отличие от усидчивости и упертости),
+то получить тот же результат можно и самостоятельно, немного погрузившись в теорию вероятности.
+
+# Продолжаем погружение
+Будем следовать общей логике доказательства ЦПТ и воспользуемся инструментом характеристической функции.
+Для начала найдем характеристическую функцию $y_k$:
 
 $$
 \begin{align*}
@@ -164,18 +158,91 @@ f_k(t) & ={\bf M}e^{i t y_k}=\int\limits_{-\infty}^{+\infty}e^{i t x}p(x)dx  =\\
 $$
 
 Рассмотрим теперь случайную величину $\eta=\sum\limits_{k=1}^{n-1}y_k.$
+
 Характеристическая функция $\eta$ будет равна произведению характеристических функций $y_k$:
 
 $$
-f_\eta(t)=\prod\limits_{k=1}^{n-1}f_k(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\frac{\sin{t\frac{v_k}{2}}}{v_k}
+f_\eta(t)=\prod\limits_{k=1}^{n-1}f_k(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\frac{\sin{t\frac{v_k}{2}}}{v_k}.
 $$
 
 Воспользуемся тем, что нас интересует центральное ортогональное сечение, заданное нормалью $\vec{V}=(1,1,\cdots,1)$:
 
 $$
-f_\eta^*(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\sin{\frac{t}{2}}=\left(\frac{\sin{t/2}}{t/2}\right)^{n-1}.
+f_\eta(t)=\left(\frac{2}{t}\right)^{n-1}\prod\limits_{k=1}^{n-1}\sin{\frac{t}{2}}=\left(\frac{\sin{t/2}}{t/2}\right)^{n-1}.
 $$
 
+Теперь воспользуемся формулой обращения:
+$$
+\begin{align}
+P\left(|\eta|\leqslant\frac{1}{2}\right)&=P\left(-\frac{1}{2}\leqslant\eta\leqslant\frac{1}{2}\right)= && \text{для абс.непр. сл.в.}\nonumber\\
+&=P\left(-\frac{1}{2}\leqslant\eta\lt\frac{1}{2}\right)=F_{\eta}\left(\frac{1}{2}\right)-F_{\eta}\left(-\frac{1}{2}\right)= && \text{формула обращения}\nonumber\\
+&=\frac{1}{2\pi}\;v.p.\int\limits_{-\infty}^{\infty}\frac{e^{it\frac{1}{2}}-e^{-it\frac{1}{2}}}{it}\left(\frac{\sin{t/2}}{t/2}\right)^{n-1}dt=\nonumber\\
+&=\frac{1}{2\pi}\:v.p.\int\limits_{-\infty}^{\infty}\left(\frac{\sin{t/2}}{t/2}\right)^{n}dt.\label{prob}
+\end{align}
+$$
+
+# Собираем части воедино
+Начнем собирать части выражения объема сечения $\eqref{vol}$:
+
+- Норма нашего вектора нормали равна $\lvert\mathbf{v}\rvert=\sqrt{n}$.
+- Вероятность мы отыскали в $\eqref{prob}$.
+
+Подставляя все в одно выражение и устремляя $n$ к бесконечности, получаем
+
+$$
+\begin{equation}
+V(\mathbf{X})=\lim_{n\to\infty}\frac{1}{2\pi}\;v.p.\int\limits_{-\infty}^{+\infty}\sqrt{n}\left(\frac{\sin{t/2}}{t/2}\right)^n dt
+\label{closed_form}
+\end{equation}
+$$
+
+Теперь отыскать объем - дело техники...
+# Дело техники
+
+* Произведем замену переменной: $x=\frac{\sqrt{n}}{t}$
+
+$$
+\begin{align*}
+V(\mathbf{X})&=\lim_{n\to\infty}\frac{1}{2\pi}\int\limits_{-\infty}^{+\infty}\sqrt{n}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n\frac{2}{\sqrt{n}}dx \\
+&=\frac{1}{\pi}\lim_{n\to\infty}\int\limits_{-\infty}^{+\infty}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n dx\\
+&=\frac{1}{\pi}\int\limits_{-\infty}^{+\infty}\lim_{n\to\infty}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n dx\\
+\end{align*}
+$$
+
+* Для отыскания предела под интегралом воспользуемся разложением в ряд Тейлора:
+
+$$
+\begin{align*}
+I&=\lim_{n\to\infty}\left(\frac{\sin{\frac{x}{\sqrt{n}}}}{\frac{x}{\sqrt{n}}}\right)^n=\\
+&=\lim_{n\to\infty}\left(\frac{ \frac{x}{\sqrt{n}}-\frac{1}{6}\left(\frac{x}{\sqrt{n}}\right)^3+o\left(\left(\frac{x}{\sqrt{n}}\right)^3\right) }{\frac{x}{\sqrt{n}}}\right)^n=\\
+&=\lim_{n\to\infty}\left(1-\frac{1}{6}\left(\frac{x}{\sqrt{n}}\right)^2+o\left(\left(\frac{x}{\sqrt{n}}\right)^2\right)\right)^n
+\end{align*}
+$$
+
+* Немного упростим последнее выражение
+
+$$
+\begin{align*}
+I&=\lim_{n\to\infty}\left(1-\frac{1}{6}\left(\frac{x}{\sqrt{n}}\right)^2+o\left(\left(\frac{x}{\sqrt{n}}\right)^2\right)\right)^n=\\
+&=\lim_{n\to\infty}\left(1-\frac{x^2}{6n}+o\left(\frac{x^2}{n}\right)\right)^n=\\
+&=\lim_{n\to\infty}\exp\left(n \ln\left(1-\frac{x^2}{6n}+o\left(\frac{x^2}{n}\right)\right)\right)=\\
+&=\lim_{n\to\infty}\exp n \left(\frac{x^2}{6n}\right)=e^{-x^2/6}.
+\end{align*}
+$$
+
+* Наконец, осталось взять [любимый интеграл первокурсников](https://ru.wikipedia.org/wiki/%D0%93%D0%B0%D1%83%D1%81%D1%81%D0%BE%D0%B2_%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D0%BB):
+
+$$
+\begin{align*}
+V(\mathbf{X})&=\frac{1}{\pi}\int\limits_{-\infty}^{+\infty}e^{-x^2/6}dx=\sqrt{\frac{6}{\pi}}.
+\end{align*}
+$$
+
+
+# Заключение
+Мы получили, что центральное сечение бесконечномерного куба имеет конечный объем.
+В других работах доказывается также и конечность _любых_ сечений (с произвольным вектором нормали).
+Противоречащий интуиции результат!
 
 # Литература
 - D. Hensley, _Slicing the cube in $R^n$ and probability (bounds for the measure of a central cube slice in $R^n$ by probability methods)_,
