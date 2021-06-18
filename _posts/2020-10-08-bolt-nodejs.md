@@ -2,6 +2,7 @@
 layout: post
 title: "Optimizing NodeJS with BOLT"
 date: 2020-10-08
+comments: true
 ---
 ## Background
 This section aims to cover the reason why straightforward
