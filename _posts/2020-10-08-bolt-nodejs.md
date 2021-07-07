@@ -68,6 +68,9 @@ LDFLAGS=-Wl,--emit-relocs\ -Wl,-znow \
 - `--emit-relocs` is mandatory for function reordering,
 - `-znow` is optional for `-plt=...` optimization.
 
+UPD: depending on Ubuntu version, `-no-pie -fno-PIE` CFLAGS/CXXFLAGS might be needed to avoid `PIC jump table heuristic failure` assertion in perf2bolt. 
+(Thanks @gabrielshulhof!)
+
 ## Profile collection
 Profile was collected using system-wide perf sampling for 3 minutes.
 Node's `make js-test` was selected as a profiling workload.
