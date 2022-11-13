@@ -7,7 +7,7 @@ comments: true
 ## Intro
 As you might already know, BOLT helps achieve peak performance on top of compiler's best effort, i.e. over both PGO and LTO.
 This post will cover the necessary steps to experiment with optimizing Chromium with BOLT. 
-I don't have any knowledge of Chromium so it's going to be quick and dirty.
+I have very little knowledge of Chromium so it's going to be quick and dirty.
 
 ## Plan
 We'll tackle this problem in the following steps:
@@ -58,7 +58,7 @@ $ size -A out/Default/chrome
 Meaning it's about xxxMB in size!
 
 ## Pre-BOLT Chromium binary
-In order to enable function reordering, one of <s>two</s>the most important optimizations, the input binary needs to have .text relocations 
+In order to enable function reordering, one of the most important optimizations, the input binary needs to have .text relocations 
 preserved by the linker.
 
 I had to tweak build configuration to actually achieve this:
@@ -111,16 +111,22 @@ The steps are described on BOLT's GitHub page: [Step 1: Collect Profile](https:/
 It took me several iterations to figure out the sampling rate which can be adjusted with -c/-F flags for perf record.
 I ended up not adding them at all and instead increasing the workload.
 
-As a workload, I used the following steps that I believe are somewhat representative of a typical Chrome usage:
-- Type "google" into Google's search bar.
-- Click the first link leading to Google's search page.
-- There, enter "facebook".
-- Click on "Login" button, followed by "Forgot password".
-- Close the tab in frustration. Type "web benchmark" in search bar.
-- Click on "Speedometer 2.0" link.
-- Let it run and close the browser.
+The representative workload is borrowed from PGO build guide here: [Run representative benchmarks to produce profiles](https://chromium.googlesource.com/chromium/src.git/+/refs/heads/main/docs/pgo.md#generating-pgo-profiles)
 
-For me, that produced an unreasonable ~500Mb perf.data file with very low coverage. But that'll suffice for now.
+The profiling invocation looks like this:
+```bash
+perf record -e cycles:u -j any,u -o perf.data -- \
+vpython3 tools/perf/run_benchmark \
+system_health.common_desktop \
+--assert-gpu-compositing --run-abridged-story-set \
+--browser=exact \
+--browser-executable=out/Default/chrome
+
+perf record -e cycles:u -j any,u -o perf2.data -- \
+vpython3 tools/perf/run_benchmark speedometer2 \
+--assert-gpu-compositing --browser=exact \
+--browser-executable=out/Default/chrome
+```
 
 ## Optimizing the binary
 Again, we're following BOLT's manual: [Step 3: Optimize with BOLT](https://github.com/llvm/llvm-project/tree/main/bolt#step-3-optimize-with-bolt).
