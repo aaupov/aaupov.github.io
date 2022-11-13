@@ -98,7 +98,7 @@ As a workload, I used the following steps that I believe are somewhat representa
 - Click on "Speedometer 2.0" link.
 - Let it run and close the browser.
 
-For me, that produced an unreasonable ~500Mb perf.data file with very low coverage (on that later). But that'll suffice for now.
+For me, that produced an unreasonable ~500Mb perf.data file with very low coverage. But that'll suffice for now.
 
 ## Optimizing the binary
 Again, we're following BOLT's manual: [Step 3: Optimize with BOLT](https://github.com/llvm/llvm-project/tree/main/bolt#step-3-optimize-with-bolt).
@@ -116,7 +116,7 @@ llvm-bolt out/Default/chrome -o out/Default/chrome.bolt \
 ```
 
 ## Perf testing
-As performance testing, I used Web benchmark (Speedometer 2.0) to see if the optimization was effective:
+For performance testing I used Web benchmark (Speedometer 2.0) to see if the optimization was effective:
 
 
 | | Runs / Minute |
@@ -124,10 +124,4 @@ As performance testing, I used Web benchmark (Speedometer 2.0) to see if the opt
 | Original binary | 109 ± 1.4 |
 | Optimized binary | 129 ± 2.5 |
 
-
-| Section | Original | BOLTed |
-|---------|---------:|-------:|
-| `.text` | 209.88Mb  | 8.95Mb |
-| `.text.cold` | N/A | 14.74Mb|
-
-I would love to do more rigorous performance testing but even these early results highlight that BOLT appears to have a positive impact.
+I would love to do more rigorous performance testing but these early results suggest that BOLT has some positive impact.
