@@ -27,13 +27,35 @@ Date:   Fri Nov 11 06:42:23 2022 +0000
     Roll clank/internal/apps from 2dd286627b38 to 3abebe8793b9 (1 revision)
 ```
 
+We'd need to enable the "official" build configuration which includes PGO:
+
+```bash
+# First fetch gclient config, tip https://stackoverflow.com/a/35382199
+gclient config https://chromium.googlesource.com/chromium/src.git
+gclient sync
+gclient runhooks
+```
+
+Then add `"checkout_pgo_profiles": True` to custom_vars in the gclient config, see [here](https://chromium.googlesource.com/chromium/src.git/+/refs/heads/main/docs/pgo.md#generating-pgo-profiles)
+```bash
+vim .gclient
+gclient runhooks
+```
+
+Finally set the gn variables, see [here](https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md#smaller-builds) and
+build Chromium:
+```bash
+gn args out/Default
+autoninja -C out/Default chrome
+```
+
 Chromium binary has a very large text section:
 ```
 $ size -A out/Default/chrome
 ...
-.text                 209883648    66822144
+.text                 xxx xxx
 ```
-Meaning it's about 210MB in size!
+Meaning it's about xxxMB in size!
 
 ## Pre-BOLT Chromium binary
 In order to enable function reordering, one of <s>two</s>the most important optimizations, the input binary needs to have .text relocations 
