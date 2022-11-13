@@ -98,7 +98,7 @@ As a workload, I used the following steps that I believe are somewhat representa
 - Click on "Speedometer 2.0" link.
 - Let it run and close the browser.
 
-For me, that produced somewhat reasonable ~50Mb perf.data file with somewhat low coverage (on that later). But that'll suffice for now.
+For me, that produced an unreasonable ~500Mb perf.data file with very low coverage (on that later). But that'll suffice for now.
 
 ## Optimizing the binary
 Again, we're following BOLT's manual: [Step 3: Optimize with BOLT](https://github.com/llvm/llvm-project/tree/main/bolt#step-3-optimize-with-bolt).
