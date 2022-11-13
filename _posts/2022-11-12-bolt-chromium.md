@@ -128,6 +128,15 @@ vpython3 tools/perf/run_benchmark speedometer2 \
 --browser-executable=out/Default/chrome
 ```
 
+## Converting the profile
+In order to combine the two profiles, we'll use perf2bolt and merge-fdata:
+```bash
+perf2bolt out/Default/chrome -perfdata=perf.data -o perf1.fdata -strict=0
+perf2bolt out/Default/chrome -perfdata=perf2.data -o perf2.fdata -strict=0
+merge-fdata # TBD
+
+```
+
 ## Optimizing the binary
 Again, we're following BOLT's manual: [Step 3: Optimize with BOLT](https://github.com/llvm/llvm-project/tree/main/bolt#step-3-optimize-with-bolt).
 There are a couple of Chromium's quirks:
