@@ -46,20 +46,28 @@ If the `runhooks` step complains about invalid gs credentials, run the `gsutil c
 (Note: `gsutil` lives in depot_tools folder). Click on the link, log in to your Google account, paste the authorization code. Use 0 as project-id (worked for me).
 Then repeat `gclient runhooks` step.
 
-Finally set the gn variables, see [here](https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md#smaller-builds) and
-build Chromium:
+Set gn variables, see [here](https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md#smaller-builds)
 ```bash
 gn args out/Default
+```
+Put the following to the file:
+```
+is_debug=false
+is_official_build = true
+symbol_level = 0
+```
+And finally build with: 
+```
 autoninja -C out/Default chrome
 ```
 
 Chromium binary has a very large text section:
-```
-$ size -A out/Default/chrome
-...
-.text                 xxx xxx
-```
-Meaning it's about xxxMB in size!
+
+| Build | .text size |
+|--|--|
+| Release | 210MB |
+| Official | 167MB |
+
 
 ## Pre-BOLT Chromium binary
 In order to enable function reordering, one of the most important optimizations, the input binary needs to have .text relocations 
@@ -120,25 +128,15 @@ The representative workload is borrowed from PGO build guide here: [Run represen
 The profiling invocation looks like this:
 ```bash
 perf record -e cycles:u -j any,u -o perf.data -- \
-vpython3 tools/perf/run_benchmark \
-system_health.common_desktop \
---assert-gpu-compositing --run-abridged-story-set \
---browser=exact \
---browser-executable=out/Default/chrome
-
-perf record -e cycles:u -j any,u -o perf2.data -- \
 vpython3 tools/perf/run_benchmark speedometer2 \
 --assert-gpu-compositing --browser=exact \
 --browser-executable=out/Default/chrome
 ```
 
 ## Converting the profile
-In order to combine the two profiles, we'll use perf2bolt and merge-fdata:
+In order to simplify the use of profile (i.e. avoid converting it multiple times), we'll use perf2bolt to convert raw (binary) perf data to a YAML profile:
 ```bash
-perf2bolt out/Default/chrome -perfdata=perf.data -o perf1.fdata -strict=0
-perf2bolt out/Default/chrome -perfdata=perf2.data -o perf2.fdata -strict=0
-merge-fdata # TBD
-
+perf2bolt out/Default/chrome -perfdata=perf.data -o perf.yaml -strict=0 --profile-format=yaml
 ```
 
 ## Optimizing the binary
@@ -157,12 +155,14 @@ llvm-bolt out/Default/chrome -o out/Default/chrome.bolt \
 ```
 
 ## Perf testing
-For performance testing I used Web benchmark (Speedometer 2.0) to see if the optimization was effective:
+For performance testing I used the same Speedometer2 invocation (sorry, no proper train/test split):
+```bash
+vpython3 tools/perf/run_benchmark speedometer2 \
+--assert-gpu-compositing --browser=exact \
+--browser-executable=out/Default/chrome
+```
 
-
-| | Runs / Minute |
+| Build | Runs / Minute |
 |--|--|
-| Original binary | 109 ± 1.4 |
-| Optimized binary | 129 ± 2.5 |
-
-I would love to do more rigorous performance testing but these early results suggest that BOLT has some positive impact.
+| "Official" | 347.686 ± 16.100 |
+| "Official" with BOLT | xxx |
