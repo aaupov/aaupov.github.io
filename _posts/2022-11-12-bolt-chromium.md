@@ -42,6 +42,10 @@ vim .gclient
 gclient runhooks
 ```
 
+If the `runhooks` step complains about invalid gs credentials, run the `gsutil config` command suggested in the output.
+(Note: `gsutil` lives in depot_tools folder). Click on the link, log in to your Google account, paste the authorization code. Use 0 as project-id (worked for me).
+Then repeat `gclient runhooks` step.
+
 Finally set the gn variables, see [here](https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md#smaller-builds) and
 build Chromium:
 ```bash
