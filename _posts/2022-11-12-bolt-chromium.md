@@ -161,8 +161,26 @@ vpython3 tools/perf/run_benchmark speedometer2 \
 --assert-gpu-compositing --browser=exact \
 --browser-executable=out/Default/chrome
 ```
-
+### Speedometer2 Runs per minute
 | Build | Runs / Minute |
 |--|--|
-| "Official" | 347.686 ± 16.100 |
-| "Official" with BOLT | xxx |
+| Official with CFI | 391.575 ± 17.901 |
+| Official sans CFI | 381.923 ± 11.436 |
+| Official sans CFI with BOLT | 404.009 ± 13.378 |
+
+### Uarch metrics
+Running under perf to see the change in uarch metrics, narrowing down to just P-cores (Golden Cove):
+
+```bash
+taskset -c 0-15 perf stat -e instructions,cycles,L1-icache-misses,iTLB-misses -- vpython3 tools/perf/run_ben
+chmark speedometer2 \
+--assert-gpu-compositing --browser=exact \
+--browser-executable=out/Default/chrome
+```
+
+| | Official sans CFI | Official sans CFI with BOLT | reduction with BOLT |
+| seconds | 25.182281057 | 23.781656083 |
+| instructions | 288,747,937,775 | 287,258,920,991 |
+| cycles | 144,095,296,652 | 139,002,624,616 |
+| L1-icache-misses | 4,703,384,066 | 3,893,492,873 |
+| iTLB-misses | 42,881,805 | 32,524,602 |
