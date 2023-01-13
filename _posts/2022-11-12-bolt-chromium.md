@@ -137,9 +137,9 @@ vpython3 tools/perf/run_benchmark speedometer2 \
 ```
 
 ## Converting the profile
-In order to simplify the use of profile (i.e. avoid converting it multiple times), we'll use perf2bolt to convert raw (binary) perf data to a YAML profile:
+In order to simplify the use of profile (i.e. avoid converting it multiple times), we'll use perf2bolt to convert raw perf data to a profile:
 ```bash
-perf2bolt out/Default/chrome -perfdata=perf.data -o perf.yaml -strict=0 --profile-format=yaml
+perf2bolt out/Default/chrome -perfdata=perf.data -o perf.fdata -strict=0
 ```
 
 ## Optimizing the binary
@@ -151,7 +151,7 @@ There are a couple of Chromium's quirks:
 Here's the command line that I used:
 ```
 llvm-bolt out/Default/chrome -o out/Default/chrome.bolt \
-  -data=perf.data -dyno-stats \
+  -data=perf.fdata -dyno-stats \
   -reorder-blocks=ext-tsp -reorder-functions=hfsort \
   -split-functions -split-all-cold -split-eh \
   -skip-funcs=Builtins_.\*
@@ -181,6 +181,11 @@ BOLT optimization dynostats:
 ```
 
 ## Perf testing
+
+Testing system:
+* Intel ADL i7-12700K
+* Ubuntu 22.04
+
 For performance testing I used the same Speedometer2 invocation (sorry, no proper train/test split):
 ```bash
 vpython3 tools/perf/run_benchmark speedometer2 \
@@ -188,7 +193,8 @@ vpython3 tools/perf/run_benchmark speedometer2 \
 --browser-executable=out/Default/chrome
 ```
 ### Speedometer2 Runs per minute
-| Build | Runs / Minute |
+
+| Build | Runs per minute |
 |--|--|
 | Official with CFI | 391.575 ± 17.901 |
 | Official sans CFI | 381.923 ± 11.436 |
@@ -211,3 +217,14 @@ chmark speedometer2 \
 | cycles | 144,095,296,652 | 139,002,624,616 | 3.7% |
 | L1-icache-misses | 4,703,384,066 | 3,893,492,873 | 20.8% |
 | iTLB-misses | 42,881,805 | 32,524,602 | 31.8% |
+
+## Summary
+BOLT is effective in optimizing large code footprint applications, both server- and client-side. 
+Chromium appears to be a good candidate as it exhibits elevated icache misses per 1000 instructions (MPKI) of about 16.
+BOLT shows moderate speedups for Chromium of about 6% wall clock-wise, or 4% cycles-wise, driven by 21% icache miss reduction and 32% iTLB miss reduction.
+
+## Future work
+* Confirm if CPU frontend is a bottleneck for Chromium using top-down methodology.
+* Support Clang CFI in BOLT.
+* Improve profiling coverage, bringing the function coverage closer to PGO levels.
+* Carefully measure the resulting performance, following benchmarking best practices and rigorous approach to statistics.
