@@ -7,24 +7,23 @@ comments: true
 ## Intro
 As you might already know, BOLT helps achieve peak performance on top of compiler's best effort, i.e. over both PGO and LTO.
 This post will cover the necessary steps to experiment with optimizing Chromium with BOLT. 
-I have very little knowledge of Chromium so it's going to be quick and dirty.
 
 ## Plan
 We'll tackle this problem in the following steps:
 - produce pre-bolt chromium binary with preserved (static) relocations
 - collect the profile
 - optimize the binary
-- try to get some performance data
+- get performance data
 
 ## Building Chromium
 I followed the steps here: [Checking out and building Chromium on Linux](https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md).
-Things just worked for me on this revision:
+Things worked for me on this revision:
 ```
-commit c2149180c4a2616202ad37580cb1cdf8372bbfa0 (HEAD, origin/main, origin/HEAD)
-Author: chromium-internal-autoroll <chromium-internal-autoroll@skia-corp.google.com.iam.gserviceaccount.com>
-Date:   Fri Nov 11 06:42:23 2022 +0000
+commit 2570036418a961586b01697e1f79b9d9380fd103 (origin/main, origin/HEAD)
+Author: chromium-autoroll <chromium-autoroll@skia-public.iam.gserviceaccount.com>
+Date:   Mon Jan 2 22:34:43 2023 +0000
 
-    Roll clank/internal/apps from 2dd286627b38 to 3abebe8793b9 (1 revision)
+    Roll Skia from 809e328ed55c to 697f9b541a0e (1 revision)
 ```
 
 We'd need to enable the "official" build configuration which includes PGO:
@@ -50,11 +49,15 @@ Set gn variables, see [here](https://chromium.googlesource.com/chromium/src/+/ma
 ```bash
 gn args out/Default
 ```
+
+We need to disable Clang CFI as BOLT doesn't understand added symbols (see [bug](https://github.com/facebookincubator/BOLT/issues/302)):
+
 Put the following to the file:
 ```
-is_debug=false
+is_debug = false
 is_official_build = true
 symbol_level = 0
+is_cfi = false
 ```
 And finally build with: 
 ```
@@ -66,7 +69,7 @@ Chromium binary has a very large text section:
 | Build | .text size |
 |--|--|
 | Release | 210MB |
-| Official | 167MB |
+| Official | 171MB |
 
 
 ## Pre-BOLT Chromium binary
@@ -121,7 +124,7 @@ $ readelf -We out/Default/chrome | grep rela.text
 The steps are described on BOLT's GitHub page: [Step 1: Collect Profile](https://github.com/llvm/llvm-project/tree/main/bolt#step-1-collect-profile).
 
 It took me several iterations to figure out the sampling rate which can be adjusted with -c/-F flags for perf record.
-I ended up not adding them at all and instead increasing the workload.
+I ended up with sampling frequency of 10Khz (`-F 10000`) to increase the quantity of collected profile.
 
 The representative workload is borrowed from PGO build guide here: [Run representative benchmarks to produce profiles](https://chromium.googlesource.com/chromium/src.git/+/refs/heads/main/docs/pgo.md#generating-pgo-profiles)
 
@@ -154,6 +157,29 @@ llvm-bolt out/Default/chrome -o out/Default/chrome.bolt \
   -skip-funcs=Builtins_.\*
 ```
 
+BOLT optimization dynostats:
+```
+
+            11566179 : executed forward branches (-8.2%)
+              748444 : taken forward branches (-65.7%)
+             3764854 : executed backward branches (+37.6%)
+             1565996 : taken backward branches (+3.4%)
+              486354 : executed unconditional branches (-48.7%)
+             1231833 : all function calls (=)
+              483079 : indirect calls (=)
+              139827 : PLT calls (=)
+           107491548 : executed instructions (-0.9%)
+            29806370 : executed load instructions (-0.0%)
+            11393188 : executed store instructions (-0.0%)
+               93934 : taken jump table branches (=)
+                   0 : taken unknown indirect branches (=)
+            15817387 : total branches (-2.8%)
+             2800794 : taken branches (-39.7%)
+            13016593 : non-taken conditional branches (+11.9%)
+             2314440 : taken conditional branches (-37.4%)
+            15331033 : all conditional branches (-0.0%)
+```
+
 ## Perf testing
 For performance testing I used the same Speedometer2 invocation (sorry, no proper train/test split):
 ```bash
@@ -169,7 +195,7 @@ vpython3 tools/perf/run_benchmark speedometer2 \
 | Official sans CFI with BOLT | 404.009 ± 13.378 |
 
 ### Uarch metrics
-Running under perf to see the change in uarch metrics, narrowing down to just P-cores (Golden Cove):
+Running under `perf` to see the change in uarch metrics, narrowing down to just P-cores (Golden Cove):
 
 ```bash
 taskset -c 0-15 perf stat -e instructions,cycles,L1-icache-misses,iTLB-misses -- vpython3 tools/perf/run_ben
@@ -178,9 +204,10 @@ chmark speedometer2 \
 --browser-executable=out/Default/chrome
 ```
 
-| | Official sans CFI | Official sans CFI with BOLT | reduction with BOLT |
-| seconds | 25.182281057 | 23.781656083 |
-| instructions | 288,747,937,775 | 287,258,920,991 |
-| cycles | 144,095,296,652 | 139,002,624,616 |
-| L1-icache-misses | 4,703,384,066 | 3,893,492,873 |
-| iTLB-misses | 42,881,805 | 32,524,602 |
+| | Official sans CFI | Official sans CFI with BOLT | reduction with BOLT, % |
+|--|--|--|--|
+| seconds | 25.182281057 | 23.781656083 | 5.9% |
+| instructions | 288,747,937,775 | 287,258,920,991 | 0.5% |
+| cycles | 144,095,296,652 | 139,002,624,616 | 3.7% |
+| L1-icache-misses | 4,703,384,066 | 3,893,492,873 | 20.8% |
+| iTLB-misses | 42,881,805 | 32,524,602 | 31.8% |
