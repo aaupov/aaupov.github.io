@@ -159,7 +159,6 @@ llvm-bolt out/Default/chrome -o out/Default/chrome.bolt \
 
 BOLT optimization dynostats:
 ```
-
             11566179 : executed forward branches (-8.2%)
               748444 : taken forward branches (-65.7%)
              3764854 : executed backward branches (+37.6%)
@@ -204,19 +203,39 @@ vpython3 tools/perf/run_benchmark speedometer2 \
 Running under `perf` to see the change in uarch metrics, narrowing down to just P-cores (Golden Cove):
 
 ```bash
-taskset -c 0-15 perf stat -e instructions,cycles,L1-icache-misses,iTLB-misses -- vpython3 tools/perf/run_ben
-chmark speedometer2 \
+taskset -c 0-15 perf stat -e instructions,cycles,L1-icache-misses,iTLB-misses -- \
+vpython3 tools/perf/run_benchmark speedometer2 \
 --assert-gpu-compositing --browser=exact \
 --browser-executable=out/Default/chrome
 ```
 
 | | Official sans CFI | Official sans CFI with BOLT | reduction with BOLT, % |
 |--|--|--|--|
-| seconds | 25.182281057 | 23.781656083 | 5.9% |
+| seconds | 25.18 | 23.78 | 5.9% |
 | instructions | 288,747,937,775 | 287,258,920,991 | 0.5% |
 | cycles | 144,095,296,652 | 139,002,624,616 | 3.7% |
 | L1-icache-misses | 4,703,384,066 | 3,893,492,873 | 20.8% |
 | iTLB-misses | 42,881,805 | 32,524,602 | 31.8% |
+
+### Static code vs JIT code
+Chromium incorporates V8 JIT, so part of the benchmark execution time is spent in dynamically 
+generated code which BOLT can't see or improve. BOLT's effect is restricted to just the code inside 
+the binary.
+
+`perf report --sort dso` shows the percentage of samples belonging to jitted code:
+```
+Samples: 9M of event 'cpu_core/cycles:u/', Event count (approx.): 9834176
+Overhead  Shared Object
+  66.58%  chrome
+  22.26%  [JIT] tid 3489774
+   5.16%  python3
+   3.53%  libc.so.6
+   1.14%  vpython
+   ...
+```
+If we exclude kernel code, system libraries and benchmarking harness overhead, the proportions become 
+roughly 75% in chrome binary and 25% in jitted code. This means that BOLT's effect for just the
+optimized binary is ~1.3x higher than for the complete benchmark.
 
 ## Summary
 BOLT is effective in optimizing large code footprint applications, both server- and client-side. 
@@ -225,6 +244,6 @@ BOLT shows moderate speedups for Chromium of about 6% wall clock-wise, or 4% cyc
 
 ## Future work
 * Confirm if CPU frontend is a bottleneck for Chromium using top-down methodology.
-* Support Clang CFI in BOLT.
 * Improve profiling coverage, bringing the function coverage closer to PGO levels.
 * Carefully measure the resulting performance, following benchmarking best practices and rigorous approach to statistics.
+* Support Clang CFI in BOLT.
