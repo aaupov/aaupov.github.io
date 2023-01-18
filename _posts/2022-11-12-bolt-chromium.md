@@ -244,6 +244,7 @@ BOLT shows moderate speedups for Chromium of about 6% wall clock-wise, or 4% cyc
 
 ## Future work
 * Confirm if CPU frontend is a bottleneck for Chromium using top-down methodology.
+* Check if huge pages help further improve performance (`-hugify`).
 * Improve profiling coverage, bringing the function coverage closer to PGO levels.
 * Carefully measure the resulting performance, following benchmarking best practices and rigorous approach to statistics.
 * Support Clang CFI in BOLT.
