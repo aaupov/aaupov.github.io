@@ -20,11 +20,11 @@ Optimized lld binary will benefit projects using LTO builds where the code gener
 from lld binary.
 
 ## Solution
-1. `CLANG_BOLT` automation needs to be extracted from `clang/CMakeLists.txt` into a separate CMake functions
+1. `CLANG_BOLT` automation needs to be extracted from `clang/CMakeLists.txt` into separate CMake files/functions
    under `llvm/cmake`.
-2. The automation needs to be generalized to accept the CMake target, and specialized for Clang in place of
+2. The automation needs to be generalized to accept CMake target, and instantiated for Clang in place of
    existing `CLANG_BOLT` stuff.
-3. Profiling: it's a bit tricky. Currently, Clang serves as a driver for PGO profiling, and PGO profiling lives in `clang/utils/perf-training` folder. 
+3. Profiling: currently, Clang serves as a driver for PGO profiling, and PGO profiling lives in `clang/utils/perf-training` folder.
    There are several ways how profiling can be extended to arbitrary targets:
    - As a starting point, the profile collected from Clang binary can be applied to other binaries in hope that at least
    some functions will match. 
