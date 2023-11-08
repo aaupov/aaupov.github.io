@@ -32,8 +32,10 @@ from lld binary.
    - Alternatively, perf-training needs to be specialized for each subproject (i.e. added for lld).
   
 ## Call to action
-It has been demonstrated that PGO and BOLT can yield sizable performance wins even with very small amount of training data:
-[devmtg presentation](https://llvm.org/devmtg/2022-11/#:~:text=Optimizing%20Clang%20with%20BOLT%20using%20CMake).
+It has been demonstrated that PGO and BOLT can yield sizable performance wins for Clang even with very small amount of training data:
+check my 2022 LLVM Developer Meeting [presentation](https://llvm.org/devmtg/2022-11/#:~:text=Optimizing%20Clang%20with%20BOLT%20using%20CMake).
 
-If you benefit from faster Clang compile times with the existing LLVM PGO and BOLT CMake automation, and would want to improve it
-and contribute back, this is a good project to do that! Feel free to reach out to me with any questions.
+So the automatic optimization infrastructure has very high ROI: it can help save both developer time and CI server capacity.
+
+If you benefit from faster Clang compile times with it and want to improve it and contribute back, 
+this is a good project to do just that! Feel free to reach out to me with any questions.
