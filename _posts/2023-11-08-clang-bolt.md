@@ -7,8 +7,8 @@ toc: true
 ---
 ## Intro and problem statement
 [Clang-BOLT](https://llvm.org/docs/AdvancedBuilds.html#bolt) 
-is a set of CMake rules that automatically profile and apply BOLT optimizations to Clang binary.
-This is similar to [PGO instrumentation](https://llvm.org/docs/AdvancedBuilds.html#multi-stage-pgo) with the primary difference being
+is a set of CMake rules that apply BOLT optimizations to Clang binary.
+This is similar to [PGO build](https://llvm.org/docs/AdvancedBuilds.html#multi-stage-pgo) with the primary difference being
 that PGO instrumentation and optimizations are applied to the source, which allows optimizing other LLVM binaries beyond just Clang.
 In contrast, BOLT is a binary optimization tool, so it's natural that it optimizes only one binary at a time.
 Existing Clang-BOLT automation is developed as part of Clang build system, leaving out other projects.
