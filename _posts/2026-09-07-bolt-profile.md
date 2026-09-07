@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "All About BOLT Profile"
+title: "WIP: All About BOLT Profile"
 date: 2026-09-07
 comments: true
 toc: true
@@ -279,8 +279,14 @@ Unlike AutoFDO/CSSPGO that are designed to work with the profile collected from 
 # Profiling evolution
 
 ## Instrumentation
-* YAML
-* Unsymbolized
+BOLT instrumentation can be improved with the following changes:
+1. Unblocking continuous profiling by producing YAML profile instead of fdata.
+
+Explicit fdata->YAML conversion step is currently required to replicate continuous profiling with instrumentation. This is cumbersome as this step requires either preserving or rebuilding no-BOLT binary and can't be done without it. Decoupling instrumentation from fdata profile and adding support for producing YAML profile with hashes, perhaps in a way similar to BAT, would address this user experience gap.
+
+2. Reducing space overheads in multi-pid scenario by switching to offline merging and symbolization.
+
+fdata profiles are highly redundant with respect to function names. For instance, BOLT-instrumented Clang when compiling LLVM sources as training data has been observed to produce many multi-GB fdata files that can fill up the disk. One solution is dumping raw counters map and deferring symbolization to an offline step after merging multiple profiles. This is somewhat similar to [llvm-profdata merge](https://llvm.org/docs/CommandGuide/llvm-profdata.html).
 
 ## Continuous BOLT
 * Via driver
