@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1000 232"
+   width="1000"
+   height="232"
+   font-family="'Segoe UI', Helvetica, Arial, sans-serif"
+   version="1.1"
+   id="svg20245"
+   sodipodi:docname="staggered-etm.svg"
+   inkscape:version="1.2.1 (9c6d41e, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs20249" />
+  <sodipodi:namedview
+     id="namedview20247"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.246"
+     inkscape:cx="470.30498"
+     inkscape:cy="116.37239"
+     inkscape:window-width="2048"
+     inkscape:window-height="1124"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg20245" />
+  <rect
+     width="1000"
+     height="232"
+     fill="#fff"
+     id="rect20191" />
+  <line
+     x1="199.8"
+     y1="50"
+     x2="199.8"
+     y2="175"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20193" />
+  <line
+     x1="365.8"
+     y1="50"
+     x2="365.8"
+     y2="175"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20195" />
+  <line
+     x1="531.8"
+     y1="50"
+     x2="531.8"
+     y2="175"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20197" />
+  <line
+     x1="697.8"
+     y1="50"
+     x2="697.8"
+     y2="175"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20199" />
+  <line
+     x1="863.8"
+     y1="50"
+     x2="863.8"
+     y2="175"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20201" />
+  <line
+     x1="233.0"
+     y1="110"
+     x2="233.0"
+     y2="203"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20203" />
+  <line
+     x1="399.0"
+     y1="110"
+     x2="399.0"
+     y2="203"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20205" />
+  <line
+     x1="565.0"
+     y1="110"
+     x2="565.0"
+     y2="203"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20207" />
+  <line
+     x1="731.0"
+     y1="110"
+     x2="731.0"
+     y2="203"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20209" />
+  <line
+     x1="897.0"
+     y1="110"
+     x2="897.0"
+     y2="203"
+     stroke="#999"
+     stroke-dasharray="3 3"
+     id="line20211" />
+  <text
+     x="20"
+     y="28"
+     fill="#c8742c"
+     font-size="14px"
+     id="text20213"><tspan
+       sodipodi:role="line"
+       id="tspan21473"
+       x="20"
+       y="28">resume (period R,</tspan><tspan
+       sodipodi:role="line"
+       id="tspan21475"
+       x="20"
+       y="45.5">arbitrary event)</tspan></text>
+  <path
+     d="M150,50 H193.8 V36 H205.8 V50 H359.8 V36 H371.8 V50 H525.8 V36 H537.8 V50 H691.8 V36 H703.8 V50 H857.8 V36 H869.8 V50 H980"
+     fill="none"
+     stroke="#c8742c"
+     stroke-width="2"
+     id="path20215" />
+  <text
+     x="20"
+     y="88"
+     fill="#1d6b57"
+     font-size="14px"
+     id="text20217"><tspan
+       sodipodi:role="line"
+       id="tspan21459"
+       x="20"
+       y="88">pause (period W,</tspan><tspan
+       sodipodi:role="line"
+       x="20"
+       y="105.5"
+       id="tspan21465">ETM cycles -</tspan><tspan
+       sodipodi:role="line"
+       x="20"
+       y="123"
+       dx="0 0 0 0 0 0 0 0 0 0 -2.4077046"
+       id="tspan21477">TRCEXTOUT1)</tspan></text>
+  <path
+     d="M150,110 H227.0 V96 H239.0 V110 H393.0 V96 H405.0 V110 H559.0 V96 H571.0 V110 H725.0 V96 H737.0 V110 H891.0 V96 H903.0 V110 H980"
+     fill="none"
+     stroke="#1d6b57"
+     stroke-width="2"
+     id="path20219" />
+  <text
+     x="20"
+     y="145"
+     fill="#555"
+     font-size="14"
+     id="text20221">ETM trace</text>
+  <rect
+     x="199.8"
+     y="153"
+     width="33.2"
+     height="22"
+     fill="#d9e5e0"
+     id="rect20223" />
+  <rect
+     x="365.8"
+     y="153"
+     width="33.2"
+     height="22"
+     fill="#d9e5e0"
+     id="rect20225" />
+  <rect
+     x="531.8"
+     y="153"
+     width="33.2"
+     height="22"
+     fill="#d9e5e0"
+     id="rect20227" />
+  <rect
+     x="697.8"
+     y="153"
+     width="33.2"
+     height="22"
+     fill="#d9e5e0"
+     id="rect20229" />
+  <rect
+     x="863.8"
+     y="153"
+     width="33.2"
+     height="22"
+     fill="#d9e5e0"
+     id="rect20231" />
+  <path
+     d="M150,175 H199.8 V153 H233.0 V175 H365.8 V153 H399.0 V175 H531.8 V153 H565.0 V175 H697.8 V153 H731.0 V175 H863.8 V153 H897.0 V175 H980"
+     fill="none"
+     stroke="#1d6b57"
+     stroke-width="2"
+     id="path20233" />
+  <circle
+     cx="233.0"
+     cy="210"
+     r="7"
+     fill="#1d6b57"
+     id="circle20235" />
+  <circle
+     cx="399.0"
+     cy="210"
+     r="7"
+     fill="#1d6b57"
+     id="circle20237" />
+  <circle
+     cx="565.0"
+     cy="210"
+     r="7"
+     fill="#1d6b57"
+     id="circle20239" />
+  <circle
+     cx="731.0"
+     cy="210"
+     r="7"
+     fill="#1d6b57"
+     id="circle20241" />
+  <circle
+     cx="897.0"
+     cy="210"
+     r="7"
+     fill="#1d6b57"
+     id="circle20243" />
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 232" width="1000" height="232" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="1000" height="232" fill="#fff"/>
+<line x1="174.9" y1="50" x2="174.9" y2="175" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="399.0" y1="50" x2="399.0" y2="175" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="648.0" y1="50" x2="648.0" y2="175" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="872.1" y1="50" x2="872.1" y2="175" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="387.1" y1="110" x2="387.1" y2="203" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="624.3" y1="110" x2="624.3" y2="203" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="861.4" y1="110" x2="861.4" y2="203" stroke="#999" stroke-dasharray="3 3"/>
+<text x="20" y="28" fill="#c8742c" font-size="14">resume (period 1.05M)</text>
+<path d="M150,50 H168.9 V36 H180.9 V50 H193.8 V36 H205.8 V50 H218.7 V36 H230.7 V50 H243.6 V36 H255.6 V50 H268.5 V36 H280.5 V50 H293.4 V36 H305.4 V50 H318.3 V36 H330.3 V50 H343.2 V36 H355.2 V50 H368.1 V36 H380.1 V50 H393.0 V36 H405.0 V50 H417.9 V36 H429.9 V50 H442.8 V36 H454.8 V50 H467.7 V36 H479.7 V50 H492.6 V36 H504.6 V50 H517.5 V36 H529.5 V50 H542.4 V36 H554.4 V50 H567.3 V36 H579.3 V50 H592.2 V36 H604.2 V50 H617.1 V36 H629.1 V50 H642.0 V36 H654.0 V50 H666.9 V36 H678.9 V50 H691.8 V36 H703.8 V50 H716.7 V36 H728.7 V50 H741.6 V36 H753.6 V50 H766.5 V36 H778.5 V50 H791.4 V36 H803.4 V50 H816.3 V36 H828.3 V50 H841.2 V36 H853.2 V50 H866.1 V36 H878.1 V50 H891.0 V36 H903.0 V50 H915.9 V36 H927.9 V50 H940.8 V36 H952.8 V50 H965.7 V36 H977.7 V50 H980" fill="none" stroke="#c8742c" stroke-width="2"/>
+<text x="20" y="88" fill="#1d6b57" font-size="14">pause (period 10M)</text>
+<path d="M150,110 H381.1 V96 H393.1 V110 H618.3 V96 H630.3 V110 H855.4 V96 H867.4 V110 H980" fill="none" stroke="#1d6b57" stroke-width="2"/>
+<text x="20" y="145" fill="#555" font-size="14">ETM trace</text>
+<rect x="174.9" y="153" width="212.2" height="22" fill="#d9e5e0"/>
+<rect x="399.0" y="153" width="225.3" height="22" fill="#d9e5e0"/>
+<rect x="648.0" y="153" width="213.4" height="22" fill="#d9e5e0"/>
+<rect x="872.1" y="153" width="107.9" height="22" fill="#d9e5e0"/>
+<path d="M150,175 H174.9 V153 H387.1 V175 H399.0 V153 H624.3 V175 H648.0 V153 H861.4 V175 H872.1 V153 H980.0 V175 H980" fill="none" stroke="#1d6b57" stroke-width="2"/>
+<circle cx="387.1" cy="210" r="7" fill="#1d6b57"/>
+<circle cx="624.3" cy="210" r="7" fill="#1d6b57"/>
+<circle cx="861.4" cy="210" r="7" fill="#1d6b57"/>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 232" width="1000" height="232" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="1000" height="232" fill="#fff"/>
+<line x1="387.1" y1="50" x2="387.1" y2="175" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="624.3" y1="50" x2="624.3" y2="175" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="861.4" y1="50" x2="861.4" y2="175" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="399.0" y1="110" x2="399.0" y2="203" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="648.0" y1="110" x2="648.0" y2="203" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="872.1" y1="110" x2="872.1" y2="203" stroke="#999" stroke-dasharray="3 3"/>
+<text x="20" y="28" fill="#c8742c" font-size="14">resume (period 10M)</text>
+<path d="M150,50 H381.1 V36 H393.1 V50 H618.3 V36 H630.3 V50 H855.4 V36 H867.4 V50 H980" fill="none" stroke="#c8742c" stroke-width="2"/>
+<text x="20" y="88" fill="#1d6b57" font-size="14">pause (period 1.05M)</text>
+<path d="M150,110 H168.9 V96 H180.9 V110 H193.8 V96 H205.8 V110 H218.7 V96 H230.7 V110 H243.6 V96 H255.6 V110 H268.5 V96 H280.5 V110 H293.4 V96 H305.4 V110 H318.3 V96 H330.3 V110 H343.2 V96 H355.2 V110 H368.1 V96 H380.1 V110 H393.0 V96 H405.0 V110 H417.9 V96 H429.9 V110 H442.8 V96 H454.8 V110 H467.7 V96 H479.7 V110 H492.6 V96 H504.6 V110 H517.5 V96 H529.5 V110 H542.4 V96 H554.4 V110 H567.3 V96 H579.3 V110 H592.2 V96 H604.2 V110 H617.1 V96 H629.1 V110 H642.0 V96 H654.0 V110 H666.9 V96 H678.9 V110 H691.8 V96 H703.8 V110 H716.7 V96 H728.7 V110 H741.6 V96 H753.6 V110 H766.5 V96 H778.5 V110 H791.4 V96 H803.4 V110 H816.3 V96 H828.3 V110 H841.2 V96 H853.2 V110 H866.1 V96 H878.1 V110 H891.0 V96 H903.0 V110 H915.9 V96 H927.9 V110 H940.8 V96 H952.8 V110 H965.7 V96 H977.7 V110 H980" fill="none" stroke="#1d6b57" stroke-width="2"/>
+<text x="20" y="145" fill="#555" font-size="14">ETM trace</text>
+<rect x="387.1" y="153" width="11.9" height="22" fill="#d9e5e0"/>
+<rect x="624.3" y="153" width="23.7" height="22" fill="#d9e5e0"/>
+<rect x="861.4" y="153" width="10.7" height="22" fill="#d9e5e0"/>
+<path d="M150,175 H387.1 V153 H399.0 V175 H624.3 V153 H648.0 V175 H861.4 V153 H872.1 V175 H980" fill="none" stroke="#1d6b57" stroke-width="2"/>
+<circle cx="174.9" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="199.8" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="224.7" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="249.6" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="274.5" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="299.4" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="324.3" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="349.2" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="374.1" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="399.0" cy="210" r="7" fill="#1d6b57"/>
+<circle cx="423.9" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="448.8" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="473.7" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="498.6" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="523.5" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="548.4" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="573.3" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="598.2" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="623.1" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="648.0" cy="210" r="7" fill="#1d6b57"/>
+<circle cx="672.9" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="697.8" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="722.7" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="747.6" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="772.5" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="797.4" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="822.3" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="847.2" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="872.1" cy="210" r="7" fill="#1d6b57"/>
+<circle cx="897.0" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="921.9" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="946.8" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+<circle cx="971.7" cy="210" r="7" fill="none" stroke="#999" stroke-dasharray="2 2"/>
+</svg>
