@@ -103,12 +103,12 @@ Swapping periods produces the following waveform:
 This is better but not ideal still: the tracing windows are shorter, but there are pause events without corresponding
 resumes, meaning wasted stack snapshots.
 
-I spent some time fiddling with periods and arrived to the following setup:
+I spent some time fiddling with periods and arrived at the following setup:
 ```
 perf record -T \
   -e cs_etm/aux-action=start-paused,timestamp/u \
-  -e cycles/aux-action=resume,period=8338447/u \
-  -e cycles/aux-action=pause,period=100003,call-graph=fp/u
+  -e cpu_cycles/aux-action=resume,period=8338447/u \
+  -e cpu_cycles/aux-action=pause,period=100003,call-graph=fp/u
 ```
 <figure>
   <img src="/assets/2026-10-csspgo-etm/independent-periods.svg" alt="Final setup">
@@ -166,7 +166,7 @@ comes with significant limitations:
 So as is, I found it too ugly for upstreaming into perf.
 
 ### Kernel stagger
-It's interesting to note that `PERF_EVENT_IOC_PERIOD` pre-3.7 (ARM) behavior would make staggering events trivial.
+It's interesting to note that old `PERF_EVENT_IOC_PERIOD` behavior would make staggering events trivial.
 How it would have worked:
 1. Open resume event with period T (without starting it),
 2. Open pause event with first staggered period T+W,
@@ -231,7 +231,7 @@ event:
 ```
 perf record -T \
   -e cs_etm/pmu_pulse,aux-action=start-paused,timestamp/u \
-  -e cycles/aux-action=resume,period=1050031/u \
+  -e cpu_cycles,aux-action=resume,period=1050031/u \
   -e armv8_pmuv3_0/trcextout1,aux-action=pause,period=1000,call-graph=fp/u \
   -- ./workload
 ```
@@ -246,8 +246,8 @@ This finally achieves the waveform expected from the example from the beginning 
 (As an honorable mention, I used Meta's Muse agent to look up ARM's TRMs to find which cores have ETE external outputs as
 PMU `TRCEXTOUT*` events.[^extout])
 
-The major benefit of this approach is that it's a ETM driver config-only change, not changing kernel or perf.
-It could also be exported via separate loadable kernel module.
+The major benefit of this approach is that it's a config-only change (plus a CPU check that can be omitted).
+The config itself could also be loaded from a separate kernel module without the CPU check.
 
 But taking a step back, the reason for using ETM cycles over CPU cycles (or any other PMU event) for pauses
 in the first place is accidental: it's just one way to get fixed-count event overflows.
@@ -255,7 +255,7 @@ in the first place is accidental: it's just one way to get fixed-count event ove
 # Recap
 At the time of writing (Oct 2026), **pmu-pulse is the recommended setup** for CPUs that expose ETE outputs as `TRCEXTOUT`.
 
-For CPUs that don't there is now a range of solutions for staggered pauses and resumes:
+For CPUs that don't, there is now a range of solutions for staggered pauses and resumes:
 * in userspace perf,
 * in kernel, also need perf interface:
     * `perf_event_attr.first_period` + attr version bump,
@@ -272,7 +272,7 @@ This can be controlled by a per-event attr bit and exposed in perf e.g. as `aux-
 ```
 perf record \
   -e cs_etm/aux-action=start-paused/u \
-  -e cycles/aux-action=resume,period=8000000/u \
+  -e cpu_cycles/aux-action=resume,period=8000000/u \
   -e armv8_pmuv3_0/br_retired,aux-action=pause-after-resume,period=100,call-graph=fp/u \
   -- ./workload
 ```
@@ -331,7 +331,7 @@ That, in turn, makes something incredible possible: a BPF ETM profiler. BPF gain
 BPF is used in many (most?) profilers these days, including at Meta[^strobelight] and Yandex,[^perforator] to name a few.
 
 Branch stack sampling support in BPF enables low-cost PGO and BOLT profiling[^ebpf-bolt] on supported CPUs.
-BRBE support is expected to be added soon.[^brbe-bpf] Until then, AUX support in BPF would fill the gap for ETM-only ARM CPUs.
+BRBE support is expected to be added soon.[^brbe-bpf] On CPUs without BRBE, AUX support in BPF fills the gap.
 
 <details markdown="1">
 <summary>BPF brstack ETM profiler</summary>
@@ -343,7 +343,7 @@ Operation:
   * resume: filter by profiling target, moving filtering before the trace is written, not after decoding.
 
 Kernel support needed:
-* PMU `read_aux()` that exposes AUX buffer to the overflow handler,
+* PMU `read_aux()` that exposes AUX buffer to the overflow handler (needs AUX sampling support),
 * "skip resume" support,
 * kfuncs exposing this to BPF: `bpf_perf_event_{aux_read,aux_size,skip_aux_resume}`
 </details>
@@ -381,7 +381,7 @@ and kernel, promptly responding to my requests, and insightful discussions.
 
 [^etm_autofdo]: [Mike Leach. 2018. AutoFDO and ARM Trace.](https://github.com/Linaro/OpenCSD/blob/master/decoder/tests/auto-fdo/autofdo.md#configuration-support---enabling-strobing)
 
-[^auxaction]: [Carsten Haitzler. 2022. CoreSight - Perf. Fine-grained tracing with AUX pause and resume.](https://docs.kernel.org/trace/coresight/coresight-perf.html#fine-grained-tracing-with-aux-pause-and-resume)
+[^auxaction]: [Leo Yan. 2025. CoreSight - Perf. Fine-grained tracing with AUX pause and resume.](https://docs.kernel.org/trace/coresight/coresight-perf.html#fine-grained-tracing-with-aux-pause-and-resume)
 
 [^autofdo]: [Dehao Chen, David Xinliang Li, Tipp Moseley. 2016. AutoFDO: Automatic Feedback-Directed Optimization for Warehouse-Scale Applications. CGO 2016 Proceedings of the 2016 International Symposium on Code Generation and Optimization, ACM, New York, NY, USA, pp. 12-23.](https://research.google/pubs/autofdo-automatic-feedback-directed-optimization-for-warehouse-scale-applications/)
 
