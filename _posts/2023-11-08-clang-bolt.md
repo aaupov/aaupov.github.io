@@ -5,6 +5,9 @@ date: 2023-11-08
 comments: true
 toc: true
 ---
+* TOC
+{:toc}
+
 ## Intro and problem statement
 [Clang-BOLT](https://llvm.org/docs/AdvancedBuilds.html#bolt) 
 is a set of CMake rules that apply BOLT optimizations to Clang binary.

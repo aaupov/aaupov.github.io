@@ -4,6 +4,9 @@ title: "Optimizing Chromium with BOLT"
 date: 2022-11-12
 comments: true
 ---
+* TOC
+{:toc}
+
 ## Intro
 As you might already know, BOLT helps achieve peak performance on top of compiler's best effort, i.e. over both PGO and LTO.
 This post will cover the necessary steps to experiment with optimizing Chromium with BOLT. 

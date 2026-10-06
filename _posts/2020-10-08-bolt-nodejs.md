@@ -4,6 +4,9 @@ title: "Optimizing NodeJS with BOLT"
 date: 2020-10-08
 comments: true
 ---
+* TOC
+{:toc}
+
 ## Background
 This section aims to cover the reason why straightforward
 application of BOLT for NodeJS can fail.

@@ -3,6 +3,9 @@ layout: post
 title: "Сечение бесконечномерного куба"
 date: 2017-04-22
 ---
+* TOC
+{:toc}
+
 <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 		extensions: ["tex2jax.js"],

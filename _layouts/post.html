@@ -16,3 +16,33 @@ layout: default
     {% include disqus_comments.html %}
   {% endif %}
 </article>
+
+<script>
+(function () {
+  var links = {};
+  document.querySelectorAll('#markdown-toc a[href^="#"]').forEach(function (a) {
+    links[decodeURIComponent(a.getAttribute('href').slice(1))] = a;
+  });
+  var headings = Array.prototype.filter.call(
+    document.querySelectorAll('.post-content [id]'),
+    function (h) { return /^H[1-6]$/.test(h.tagName) && links[h.id]; });
+  if (!headings.length || !('IntersectionObserver' in window)) return;
+
+  var current;
+  function update() {
+    var line = window.innerHeight * 0.3;
+    var active = headings[0];
+    headings.forEach(function (h) {
+      if (h.getBoundingClientRect().top <= line) active = h;
+    });
+    if (active === current) return;
+    if (current) links[current.id].classList.remove('active');
+    links[active.id].classList.add('active');
+    current = active;
+  }
+
+  var observer = new IntersectionObserver(update, { rootMargin: '0px 0px -70% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+  update();
+})();
+</script>

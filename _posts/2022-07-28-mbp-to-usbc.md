@@ -4,6 +4,9 @@ title: "Using MacBook Pro Early 2015 with LG Ultrafine 4k 22in"
 date: 2022-07-28
 comments: true
 ---
+* TOC
+{:toc}
+
 # Preface: how the COVID pandemic got me a new monitor
 I think I don't need to explain how the switch to WFH got me thinking about investing in a good monitor and a reasonably ergonomic work space at home.
 It affected my productivity big time when I had to switch from the full-sized keyboard and a 24" monitor holding two vim panes to a laptop keyboard 

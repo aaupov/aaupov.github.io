@@ -3,31 +3,33 @@ layout: post
 title: "WIP: All About BOLT Profile"
 date: 2026-09-07
 comments: true
-toc: true
 ---
+* TOC
+{:toc}
+
 # Intro
 BOLT (Binary Optimization and Layout Tool) is a post-link **profile-guided** code layout optimizer.
 
-This post will attempt to cover several dimensions of BOLT profiling: 
+This post will attempt to cover several dimensions of BOLT profiling:
 * profiling workload selection,
 * profiling support in software and hardware,
 * profile types and formats,
 * profile lifecycle and handling in BOLT tools,
 * real-world usage scenarios.
 
-The profile plays a crucial role in its effectiveness. BOLT's raison d'être is that it matches binary profile to the binary directly, thus augmenting 
-addressing the semantical gap of compiler-based PGO. 
+The profile plays a crucial role in its effectiveness. BOLT's raison d'être is that it matches binary profile to the binary directly, thus augmenting
+addressing the semantical gap of compiler-based PGO.
 Compiler works with a program representation
 
 In compiler PGO, the profile has to describe program execution at program representation level that compiler manipulates
 a higher level (source or IR), which causes reduced profile accuracy thus making the profile inaccurate when it reaches the low level representation. Late (CS IR) and flow/context-sensitive profiles reduce the gap but don't close it.
 
-BOLT is a form of PGO (profile-guided optimizations) which 
+BOLT is a form of PGO (profile-guided optimizations) which
 has the advantage of identity profile mapping: the profile is collected from and mapped to the same semantical level
 
 that works directly on executables which improves execution efficiency through profile-guided code layout optimizations.
 and which implements profile-guided code layout optimizations
-, a form of profile-guided optimizations (PGO). 
+, a form of profile-guided optimizations (PGO).
 leveraging post-link optimizations that imp
 is a binary optimization and layout tool, which is a form of profile-guided optimization (PGO)
 
@@ -56,15 +58,15 @@ The profile
 > Do profile your actual workload
 
 
-works best results when optimization 
-works best when the profile comes from the same workload that is going to be 
+works best results when optimization
+works best when the profile comes from the same workload that is going to be
 
-This recommendation extends to 
+This recommendation extends to
 > (or benchmarks) – no train/test split.
 
 > Don't profile tests.
 
-Tests by design exercise corner cases – code paths that are not exercised often. Including them in the profile bloats hot code and 
+Tests by design exercise corner cases – code paths that are not exercised often. Including them in the profile bloats hot code and
 
 ### Server profiling
 GWP, Strobelight, Perforator
@@ -233,9 +235,9 @@ source: ... --- old --- new
                  \       \
                   v       v
 binary:       previous    current
-                   \     ^   
-                    v   /     
-profile:          production     
+                   \     ^
+                    v   /
+profile:          production
 ```
 
 AutoFDO/CSSPGO can consume production profile collected directly from the previous binary build, thanks to source/IR matching making it easier to tolerate source drift and profile staleness.
@@ -249,11 +251,11 @@ source: ... --- old --- new
 binary:       previous    current
                    \     ^
                     v   /
-profile:          production     
+profile:          production
 ```
 
 For compiler PGO, as the profile is matched to source/IR level, later stage optimizations do not inhibit its ability to consume the profile from drastically different binary.
-However, compiler PGO is better at tolerating source drift and profile staleness compared to 
+However, compiler PGO is better at tolerating source drift and profile staleness compared to
 because of slower pace of change compared to waterfall changes in the binary
 an important distinction between BOLT and compiler PGO is the ability to tolerate staleness.
 AutoFDO/CSSPGO are designed to work directly with production profile collected from the previous workload build, tolerating source drift and profile staleness:
@@ -261,7 +263,7 @@ AutoFDO/CSSPGO are designed to work directly with production profile collected f
 
 Unlike AutoFDO/CSSPGO that are designed to work with the profile collected from an actual ("production") workload execution, BOLT profile typically comes from separate build (no-bolt or pre-bolt) running with a subset of inputs/traffic ("dedicated profiling tier"). This creates a split between the profile that's used for optimization (opt profile) and actual (production) usage.
 
-* Opt/prod profiles: in case of BOLT, the profile typically comes from separate binary build (no-BOLT/pre-BOLT) running on a subset of inputs/traffic, ideally 
+* Opt/prod profiles: in case of BOLT, the profile typically comes from separate binary build (no-BOLT/pre-BOLT) running on a subset of inputs/traffic, ideally
 * Optimization profile: the profile that's used to optimize the binary.
 * Production profile: profile collected from the workload execution on real inputs.
 * Partition score
